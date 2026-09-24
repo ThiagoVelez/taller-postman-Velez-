@@ -1,4 +1,10 @@
-# Tarea: Investigación sobre APIs y Postman
+# Taller de APIs y Postman
+
+**Santiago Velez**  
+**Identificación:** 1006238743  
+**Curso:** Ingeniería de Software II — Cotecnova  
+
+---
 
 ## Marco conceptual
 
@@ -42,3 +48,51 @@ Desde el punto de vista de "quién tiene la culpa":
 * En un error **5xx** la culpa es del servidor (el backend). Significa que nuestra petición estaba construida perfectamente, pero el servidor se bloqueó, el código falló internamente o la base de datos se cayó. La solución recae en el equipo de desarrollo backend para reparar el sistema.
 
 * **Fuente consultada:** Mozilla Developer Network (MDN Web Docs). "Códigos de estado de respuesta HTTP". Recuperado de: https://developer.mozilla.org/es/docs/Web/HTTP/Status
+
+---
+
+## Cómo reproducir este taller
+
+Para importar la colección y ejecutar las pruebas en su propio entorno de Postman, siga estos pasos:
+
+### 1. Prerrequisitos
+* Tener instalado [Postman](https://www.postman.com/downloads/) en su equipo (o utilizar la versión web).
+* Disponer de conexión a internet para conectarse a la API pública de pruebas [JSONPlaceholder](https://jsonplaceholder.typicode.com/).
+* Clonar este repositorio localmente:
+  ```bash
+  git clone https://github.com/ThiagoVelez/taller-postman-Velez-.git
+  cd taller-postman-Velez-
+  ```
+
+### 2. Importar la colección en Postman
+1. Abra **Postman**.
+2. En la barra superior o en el panel lateral izquierdo, haga clic en el botón **Import** (o presione `Ctrl + O`).
+3. Arrastre y suelte el archivo `coleccion.json` en la ventana, o haga clic en **files** y selecciónelo desde la raíz de este repositorio.
+4. Haga clic en **Import**. La colección llamada **`Taller-API`** aparecerá en su panel de colecciones (*Collections*).
+
+### 3. Ejecutar las peticiones
+
+#### Opción A: Ejecución individual
+1. Despliegue la colección **`Taller-API`**.
+2. Seleccione cualquiera de las peticiones (`GET /posts`, `GET /posts/1`, `GET /posts/9999`, `POST /posts`, `PUT /posts/1`, `PATCH /posts/1`, `DELETE /posts/1`).
+3. Haga clic en el botón **Send**.
+4. Revise en el panel inferior el cuerpo de respuesta (*Body*), el código de estado, tiempo de respuesta y los resultados de las aserciones en la pestaña **Test Results**.
+
+#### Opción B: Ejecución automatizada con Collection Runner
+1. Haga clic sobre la colección **`Taller-API`** o sobre los tres puntos `...` junto a su nombre.
+2. Seleccione la opción **Run collection**.
+3. Seleccione las peticiones que desea ejecutar y configure las iteraciones deseadas.
+4. Presione el botón **Run Taller-API**.
+5. Postman ejecutará secuencialmente cada petición y mostrará el informe consolidado con las pruebas pasadas (*passed*) y fallidas (*failed*).
+
+---
+
+## Archivos de este repositorio
+
+| Archivo / Carpeta | Descripción |
+| :--- | :--- |
+| [`README.md`](./README.md) | Documentación principal del taller: marco teórico de APIs REST, tabla de métodos HTTP, análisis de códigos de estado, guía paso a paso para reproducir el taller e índice de archivos. |
+| [`coleccion.json`](./coleccion.json) | Archivo de exportación de la colección de Postman (formato Collection v2.1) que incluye todas las peticiones configuradas y sus pruebas automatizadas (`pm.test` / `pm.expect`). |
+| [`hallazgos.md`](./hallazgos.md) | Documento con el análisis detallado del comportamiento de la API: criterios de aceptación (recurso individual vs colección), evaluación del error 404, análisis de peticiones POST/PUT/PATCH, pruebas de valores límite (Boundary Value Testing), rutas anidadas, diseño de pruebas automatizadas y justificación de por qué es importante ver fallar una prueba antes de confiar en ella. |
+| [`conclusiones.md`](./conclusiones.md) | Documento con las conclusiones del taller: concepto y verificación práctica de la idempotencia en métodos HTTP (PUT vs POST), y análisis técnico de las cabeceras de respuesta (`Content-Type`, `Cache-Control`, `Server`). |
+| [`evidencias/`](./evidencias/) | Carpeta con todas las capturas de pantalla de la ejecución en Postman organizadas por actividad (`Error 404`, `GetColeccion`, `POST`, `POST y PUT`, `PUT y PATCH`, `prueba automatica`, `Tabla de Pruebas Endpoint`). |
